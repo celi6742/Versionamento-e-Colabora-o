@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alice • Portfólio</title>
+
+  <!-- Novas Fontes: Playfair Display (títulos elegantes) e Nunito (texto fofo e legível) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+
+  <style>
+    /* PALETA DE CORES: Fundo rosa bem clarinho + textos bem escuros */
+    :root {
+      --fundo: hwb(342 67% 11%);           /* Rosa bem clarinho e delicado */
+      --cartao: hsl(0, 0%, 100%);          /* Branco puro nos cartões */
+      --texto-principal: #240c1a; /* Ameixa bem escuro para leitura nítida */
+      --texto-suave: #59354a;     /* Tom escuro suave para subtítulos */
+      --primaria: hsl(333, 66%, 29%);        /* Rosa profundo para títulos e destaques */
+      --primaria-clara: #f472b6;  /* Rosa médio para detalhes */
+      --tag-fundo: #fce7f3;       /* Fundo das etiquetas */
+      --tag-texto: #831843;       /* Texto escuro nas etiquetas */
+      --borda: #f9d8e6;           /* Borda rosada sutil */
+    }
+
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Nunito', sans-serif;
+      background-color: var(--fundo);
+      color: var(--texto-principal);
+      line-height: 1.65;
+      min-height: 100vh;
+    }
+
+    /* Menu de navegação superior */
+    nav {
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--borda);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 14px 20px;
+    }
+
+    .nav-conteudo {
+      max-width: 860px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: var(--primaria);
+      text-decoration: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--texto-principal);
+      font-size: 0.92rem;
+      font-weight: 600;
+      margin-left: 16px;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--primaria);
+    }
+
+    /* Container principal */
+    .container {
+      max-width: 860px;
+      margin: 36px auto;
+      padding: 0 20px;
+    }
+
+    /* Cabeçalho / Perfil */
+    header {
+      text-align: center;
+      margin-bottom: 32px;
+      background: var(--cartao);
+      padding: 42px 24px;
+      border-radius: 24px;
+      border: 1px solid var(--borda);
+      box-shadow: 0 8px 24px rgba(219, 39, 119, 0.05);
+    }
+
+    .avatar {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 108px;
+      height: 108px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #f472b6, #db2777);
+      color: white;
+      font-size: 44px;
+      margin-bottom: 16px;
+      box-shadow: 0 8px 20px rgba(219, 39, 119, 0.2);
+      border: 4px solid #fff;
+      outline: 2px solid var(--borda);
+      overflow: hidden;
+    }
+
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    h1, h2 {
+      font-family: 'Playfair Display', serif;
+      margin-top: 0;
+    }
+
+    h3 {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 700;
+      margin-top: 0;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 6px;
+      color: var(--texto-principal);
+    }
+
+    .subtitulo {
+      margin: 0 auto 14px;
+      color: var(--texto-suave);
+      font-size: 1.08rem;
+      font-weight: 600;
+    }
+
+    .badge-status {
+      display: inline-block;
+      background-color: var(--tag-fundo);
+      color: var(--tag-texto);
+      font-size: 0.88rem;
+      font-weight: 700;
+      padding: 6px 16px;
+      border-radius: 99px;
+      border: 1px solid var(--borda);
+    }
+
+    /* Cartões das seções */
+    section {
+      background-color: var(--cartao);
+      padding: 30px 34px;
+      margin-bottom: 24px;
+      border-radius: 20px;
+      border: 1px solid var(--borda);
+      box-shadow: 0 4px 18px rgba(219, 39, 119, 0.04);
+    }
+
+    section h2 {
+      font-size: 1.5rem;
+      color: var(--primaria);
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Grade de informações rápidas */
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px dashed var(--borda);
+      font-size: 0.95rem;
+    }
+
+    .info-item strong {
+      color: var(--primaria);
+      display: block;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      margin-bottom: 2px;
+    }
+
+    /* Habilidades */
+    .habilidades-grupo {
+      margin-bottom: 18px;
+    }
+
+    .habilidades-grupo:last-child {
+      margin-bottom: 0;
+    }
+
+    .habilidades-titulo {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--texto-suave);
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .habilidades span {
+      display: inline-block;
+      background-color: var(--tag-fundo);
+      color: var(--tag-texto);
+      padding: 7px 14px;
+      margin: 4px 6px 4px 0;
+      border-radius: 12px;
+      font-size: 0.92rem;
+      font-weight: 600;
+      border: 1px solid var(--borda);
+      transition: transform 0.2s, background-color 0.2s;
+    }
+
+    .habilidades span:hover {
+      transform: translateY(-2px);
+      background-color: #fbcfe8;
+    }
+
+    /* Formação & Certificados */
+    .item-lista {
+      padding-left: 16px;
+      border-left: 3px solid var(--primaria-clara);
+      margin-bottom: 20px;
+    }
+
+    .item-lista:last-child {
+      margin-bottom: 0;
+    }
+
+    .item-lista h3 {
+      margin-bottom: 2px;
+      font-size: 1.08rem;
+      color: var(--texto-principal);
+    }
+
+    .item-periodo {
+      font-size: 0.88rem;
+      color: var(--primaria);
+      font-weight: 700;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    /* Lista de Metas / Objetivos */
+    .lista-metas {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .lista-metas li {
+      padding: 10px 14px;
+      background-color: var(--fundo);
+      border: 1px solid var(--borda);
+      border-radius: 12px;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .lista-metas li:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Grade de Projetos */
+    .projetos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+
+    .projeto-card {
+      background: var(--fundo);
+      border: 1px solid var(--borda);
+      border-radius: 16px;
+      padding: 20px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .projeto-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(219, 39, 119, 0.1);
+    }
+
+    .projeto-card h3 {
+      margin-bottom: 8px;
+      color: var(--texto-principal);
+    }
+
+    .projeto-card p {
+      font-size: 0.94rem;
+      margin-top: 0;
+      color: var(--texto-suave);
+    }
+
+    .projeto-tags {
+      margin: 12px 0;
+    }
+
+    .projeto-tags span {
+      font-size: 0.78rem;
+      background: #fff;
+      color: var(--tag-texto);
+      padding: 3px 9px;
+      border-radius: 8px;
+      border: 1px solid var(--borda);
+      margin-right: 4px;
+      font-weight: 700;
+    }
+
+    .link-projeto {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--primaria);
+      text-decoration: none;
+    }
+
+    .link-projeto:hover {
+      text-decoration: underline;
+    }
+
+    /* Cartões de Favoritos / Inspirações */
+    .favoritos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+    }
+
+    .fav-card {
+      background: var(--fundo);
+      border: 1px solid var(--borda);
+      border-radius: 14px;
+      padding: 14px 16px;
+    }
+
+    .fav-card strong {
+      display: block;
+      color: var(--primaria);
+      font-size: 0.85rem;
+      margin-bottom: 4px;
+    }
+
+    /* Botões e Links de Contato */
+    .links-contato {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .btn-link {
+      text-decoration: none;
+      background-color: var(--fundo);
+      color: var(--texto-principal);
+      border: 1px solid var(--borda);
+      padding: 10px 16px;
+      border-radius: 12px;
+      font-size: 0.94rem;
+      font-weight: 700;
+      transition: all 0.2s;
+    }
+
+    .btn-link:hover {
+      background-color: var(--tag-fundo);
+      border-color: var(--primaria);
+      color: var(--primaria);
+    }
+
+    button {
+      background: linear-gradient(135deg, #ec4899, #db2777);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 12px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.98rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(219, 39, 119, 0.25);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(219, 39, 119, 0.35);
+    }
+
+    #mensagem {
+      margin-top: 14px;
+      font-weight: 700;
+      color: var(--primaria);
+      min-height: 24px;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--texto-suave);
+      font-size: 0.92rem;
+      font-weight: 600;
+      padding: 20px 0 40px;
+    }
+
+    /* Ajustes para celular */
+    @media (max-width: 650px) {
+      .nav-links { display: none; }
+      section { padding: 24px 20px; }
+      h1 { font-size: 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Menu de Navegação -->
+  <nav>
+    <div class="nav-conteudo">
+      <a href="#" class="logo">꣑ৎ Alice.dev</a>
+      <div class="nav-links">
+        <a href="#sobre">Sobre</a>
+        <a href="#habilidades">Habilidades</a>
+        <a href="#formacao">Formação</a>
+        <a href="#projetos">Projetos</a>
+        <a href="#objetivos">Objetivos</a>
+        <a href="#favoritos">Favoritos</a>
+        <a href="#contato">Contato</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+
+    <!-- CABEÇALHO -->
+    <header>
+      <div class="avatar">
+        <!-- DICA: Para colocar uma foto sua, apague o ꣑ৎ e tire o comentário da linha abaixo: -->
+        <!-- <img src="sua-foto.jpg" alt="Foto da Alice"> -->
+        ꣑ৎ
+      </div>
+
+      <!-- PREENCHA AQUI: Seu nome completo ou apelido -->
+      <h1>Oii, eu sou a Alice!</h1>
+      <p class="subtitulo">Estudante de Técnico em Informática para Internet</p>
+      
+      <!-- PREENCHA AQUI: Seu status atual -->
+      <span class="badge-status"></span> Em busca de aprendizado, estágio e novos desafios</span>
+    </header>
+
+    <!-- SOBRE MIM -->
+    <section id="sobre">
+      <h2>Sobre mim</h2>
+      <!-- PREENCHA AQUI: Escreva mais sobre sua história, personalidade e por que escolheu TI -->
+      <p>
+        Olá! Sou estudante de Técnico em Informática para Internet, apaixonada por tecnologia, 
+        design, moda e criação de interfaces web. Fora dos códigos, eu amo moda, tudo que é 
+        cor-de-rosa e fazer bolos.
+      </p>
+      <p>
+       Sou extremamente comunicativa e me adapto facilemnte a todos os ambientes em que estou, gosot de conhecer e experimentar coisas novas
+      </p>
+
+      <!-- PREENCHA AQUI: Dados pessoais rápidos -->
+      <div class="info-grid">
+        <div class="info-item">
+          <strong>📍  </strong>
+          <span>Florianópolis - SC
+        </div>
+        <div class="info-item">
+          <strong>🎂</strong>
+          <span>02/01/2010</span>
+        </div>
+        <div class="info-item">
+          <strong>🗣️</strong>
+          <span>Português (Nativo) •  Inglês avançado</span>
+        </div>
+        <div class="info-item">
+          <strong>Foco Atual</strong>
+          <span>HTML, CSS, JavaScript e Lógica</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- HABILIDADES -->
+    <section id="habilidades">
+      <h2> Minhas habilidades</h2>
+
+      <div class="habilidades-grupo">
+        <span class="habilidades-titulo">Linguagens & Tecnologias</span>
+        <div class="habilidades">
+          <!-- PREENCHA AQUI: Tecnologias que você conhece ou está estudando -->
+          <span>HTML5</span>
+          <span>CSS3</span>
+          <span>Portugol</span>
+          <span>Git & GitHub</span>
+        </div>
+      </div>
+
+      <div class="habilidades-grupo">
+        <span class="habilidades-titulo">Ferramentas & Design</span>
+        <div class="habilidades">
+          <!-- PREENCHA AQUI: Programas que você sabe usar -->
+          <span>VS Code</span>
+          <span>Canva</span>
+          <span> Pacote Office / Google Docs</span>
+        </div>
+      </div>
+
+      <div class="habilidades-grupo">
+        <span class="habilidades-titulo">Habilidades Pessoais & Hobbies</span>
+        <div class="habilidades">
+          <!-- PREENCHA AQUI: Suas qualidades e hobbies -->
+          <span>Desenhar</span>
+          <span>Moda</span>
+          <span>Comunicação</span>
+          <span>Fazer bolo</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- FORMAÇÃO & CERTIFICADOS -->
+    <section id="formacao">
+      <h2>Formação & Certificados</h2>
+
+      <div class="item-lista">
+        <h3>Técnico em Informática para Internet</h3>
+        <!-- PREENCHA AQUI: Nome da escola e ano -->
+        <span class="item-periodo">Cursando • 2026 </span>
+        <p>Desenvolvimento de sites, lógica de programação, bancos de dados, redes e design de interfaces.</p>
+      </div>
+
+      <div class="item-lista">
+        <h3>Ensino Médio</h3>
+        <!-- PREENCHA AQUI: Ano ou série atual -->
+        <span class="item-periodo">EEB Henrique Stodieck • Cursando 1º ano</span>
+        <p>Sou atualmente representante de turma !!</p>
+      </div>
+
+      <div class="item-lista">
+        <h3>SENAC</h3>
+        <span class="item-periodo"></span>
+        <p>Fiz um ano de jovem aprendiz em 2025</p>
+      </div>
+    </section>
+
+    <!-- PROJETOS -->
+    <section id="projetos">
+      <h2>💻 Meus projetos</h2>
+
+      <div class="projetos-grid">
+        <!-- Projeto 1 -->
+        <article class="projeto-card">
+          <div>
+            <h3>Meu Site Pessoal</h3>
+            <p>Portfólio desenvolvido para me apresentar, praticar estruturação semântica e estilização moderna.</p>
+            <div class="projeto-tags">
+              <span>HTML</span>
+              <span>CSS</span>
+              <span>JavaScript</span>
+            </div>
+          </div>
+          <a href="https://github.com/celi6742" target="_blank" class="link-projeto">Ver código no GitHub →</a>
+        </article>
+
+        <!-- Projeto 2 -->
+        <article class="projeto-card">
+          <div>
+            <h3>EM BREVE</h3>
+            <p></p>
+            <div class="projeto-tags">
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+          <a href="#" target="_blank" class="link-projeto">Ver projeto →</a>
+        </article>
+
+        <!-- Projeto 3 -->
+        <article class="projeto-card">
+          <div>
+            <h3>EM BREVE</h3>
+            <p></p>
+            <div class="projeto-tags">
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+          <a href="#" target="_blank" class="link-projeto">Ver projeto →</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- OBJETIVOS & METAS -->
+    <section id="objetivos">
+      <h2>Meus objetivos & metas</h2>
+      <!-- PREENCHA AQUI: Suas metas de estudo e carreira -->
+      <ul class="lista-metas">
+        <li>Dominar HTML, CSS e JavaScript para criar sites completos e responsivos.</li>
+        <li>Publicar meus exercícios e projetos escolares no GitHub toda semana.</li>
+        <li>Conquistar minha primeira oportunidade de estágio em TI.</li>
+        <li>Ter todos os mangás de Hunter x Hunter</li>
+      </ul>
+    </section>
+
+    <!-- FAVORITOS & INSPIRAÇÕES -->
+    <section id="favoritos">
+      <h2>Um pouco mais sobre mim</h2>
+      <!-- PREENCHA AQUI: Seus gostos pessoais para deixar o portfólio com a sua cara -->
+      <div class="favoritos-grid">
+        <div class="fav-card">
+          <strong>Anime Favorito</strong>
+          <span>Hunter x Hunter</span>
+        </div>
+        <div class="fav-card">
+          <strong>Receita Preferida</strong>
+          <span>Bolo de morango com chocolate</span>
+        </div>
+        <div class="fav-card">
+          <strong>Estilo & Moda</strong>
+          <span>Não tenho um estilo especifíco, gosot muito de explorar novas coisas e me interesso MUITO por moda no geral</span>
+        </div>
+        <div class="fav-card">
+          <strong>Música / Artista</strong>
+          <span>Miseryswin</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTATO -->
+    <section id="contato">
+      <h2>💌 Vamos conversar?</h2>
+      <p>Você pode acompanhar meus estudos ou entrar em contato pelos links abaixo:</p>
+
+      <div class="links-contato">
+        <a href="https://github.com/celi6742" target="_blank" class="btn-link">🐙 GitHub</a>
+        <!-- PREENCHA AQUI: Coloque seus links reais ou remova os que não usar -->
+        <a href="mailto:alice_vitta@estudante.sesisenai.org.br"class="btn-link">✉️ E-mail</a>
+        <a href="#" target="_blank" class="btn-link">📸 Instagram</a>
+        <a href="#" target="_blank" class="btn-link">💼 LinkedIn</a>
+        <a href="#" target="_blank" class="btn-link">📌 Pinterest</a>
+      </div>
+
+      <button onclick="mostrarMensagem()">Clique para deixar um oi ✨</button>
+      <p id="mensagem"></p>
+    </section>
+
+    <footer>
+      <p>Feito com carinho por Alice ꣑ৎ • 2026</p>
+    </footer>
+
+  </main>
+
+  <script>
+    function mostrarMensagem() {
+      const msg = document.getElementById("mensagem");
+      msg.textContent = "Obrigada por visitar meu portfólio! Volte sempre 🌸✨";
+    }
+  </script>
+</body>
+</html>
